@@ -11,9 +11,9 @@ jobs:
           # This data can be any valid JSON from a previous step in the GitHub Action
           payload: |
             {
-              "channel": "@leandro",
+              "channel": "ar-team-priv",
               "username": "Github Actions Deployment Monitor",
-              "text": "<@leandro> A deploy to Metronome app in staging has just finished",
+              "text": "<@here> A deploy to Metronome app in staging has just finished (MENTIRA, ES UNA PRUEBA)",
               "icon_emoji": ":github:"
             }
         env:
