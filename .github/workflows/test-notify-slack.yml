@@ -2,13 +2,15 @@ on: push
 name: Slack Notification Demo
 jobs:
   slackNotification:
-    name: Slack Notification Demo
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-      - name: Slack Notification Demo
-        uses: bryannice/gitactions-slack-notification@2.0.0
-        env:
-          SLACK_INCOMING_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-          SLACK_MESSAGE: 'Demo''ing the Slack Notification'
-          SLACK_TITLE: 'Slack Notification Demo'
+    - name: Send custom JSON data to Slack workflow
+      id: slack
+      uses: slackapi/slack-github-action@v1.23.0
+      with:
+        # This data can be any valid JSON from a previous step in the GitHub Action
+        payload: |
+          {
+            "key": "value",
+            "foo": "bar"
+          }
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
