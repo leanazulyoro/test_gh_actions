@@ -13,7 +13,7 @@ jobs:
             {
               "channel": "@leandro",
               "username": "Github Actions Deployment Monitor",
-              "text": "@Lean A deploy to Metronome app in staging has just finished",
+              "text": "<@Lean> A deploy to Metronome app in staging has just finished",
               "icon_emoji": ":github:"
             }
         env:
