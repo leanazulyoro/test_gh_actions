@@ -13,7 +13,7 @@ jobs:
             {
               "channel": "ar-team-priv",
               "username": "Github Actions Deployment Monitor",
-              "text": "<!channel> A deploy to Metronome app in staging has just finished (MENTIRA, ES UNA PRUEBA)",
+              "text": "<!here> A deploy to Metronome app in staging has just finished (MENTIRA, ES UNA PRUEBA)",
               "icon_emoji": ":github:"
             }
         env:
