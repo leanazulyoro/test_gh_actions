@@ -12,9 +12,9 @@ jobs:
           payload: |
             {
               "channel": "@leandro",
-              "username": "webhookbot",
-              "text": "Hellow world",
-              "icon_emoji": ":ghost:"
+              "username": "Github Actions Deployment Monitor",
+              "text": "@Lean A deploy to Metronome app in staging has just finished",
+              "icon_emoji": ":github:"
             }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
