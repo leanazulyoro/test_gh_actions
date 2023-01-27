@@ -11,8 +11,7 @@ jobs:
         
       - name: Prepare
         id: slack-prepare
-        run: |
-          echo "::set-output name=commit-message::${{ toJson(github.event.head_commit.message) }}"
+        run: echo "::set-output name=commit-message::${{ toJson(github.event.head_commit.message) }}"
       - name: Notify staging deploy started  
         id: slack_staging_start
         uses: slackapi/slack-github-action@v1.23.0
