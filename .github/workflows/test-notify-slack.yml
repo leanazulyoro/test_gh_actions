@@ -4,6 +4,13 @@ jobs:
   slackNotification:
     runs-on: ubuntu-latest
     steps:
+        
+      # @here A deploy to Bloq Services in staging is starting - [Merge pull request #1144 from bloqpriv/flag_update](Merge commit message)
+      # [Flag updated for node connection example](PR title).
+        
+        
+        
+        
       - name: Send custom JSON data to Slack workflow
         id: slack
         uses: slackapi/slack-github-action@v1.23.0
@@ -13,7 +20,7 @@ jobs:
             {
               "channel": "@leandro",
               "username": "Github Actions Deployment Monitor",
-              "text": "<@leandro> GitHub Action build result: ${{ job.status }}\n${{ github.event.head_commit.message }}",
+              "text": "<@leandro> job.status: ${{ job.status }} / head_commit.message ${{ github.event.head_commit.message }}",
               "icon_emoji": ":github:"
             }
         env:
