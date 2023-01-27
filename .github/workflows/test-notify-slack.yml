@@ -13,15 +13,23 @@ jobs:
         with:
           slack_webhook: ${{ secrets.SLACK_WEBHOOK }}
           app_name: Metronome app
-          slack_channel: "sdsdsd"
-          slack_mention: <@leandro>
+          staging_branch: develop
+          prod_branch: main
+          staging_slack_channel: "@leandro"
+          prod_slack_channel: "@leandro"
+          staging_slack_mention: <@leandro>
+          prod_slack_mention: <@leandro>
       - name: Notify deployment finished
         uses: ./.github/actions/notify-deployment-finished
         with:
           slack_webhook: ${{ secrets.SLACK_WEBHOOK }}
           app_name: Metronome app
-          slack_channel: "@leandro"
-          slack_mention: <@leandro>
+          staging_branch: develop
+          prod_branch: main
+          staging_slack_channel: "@leandro"
+          prod_slack_channel: "@leandro"
+          staging_slack_mention: <@leandro>
+          prod_slack_mention: <@leandro>
 
       - name: Notify deployment failed
         if: failure()

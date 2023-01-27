@@ -1,4 +1,4 @@
-name: Slack notify
+name: Notify deployment failed
 description: Notifies to slack via a message on a given channel
 
 inputs:
@@ -15,12 +15,20 @@ inputs:
     description: 'The name of the app being deployed'
     required: true
     default: Metronome app
-  slack_channel:
-    description: 'The name of channel to notify on'
+  prod_slack_channel:
+    description: 'The name of channel to notify on for production deployments'
     required: true
     default: ar-team-priv
-  slack_mention:
-    description: 'The mention to include in the message'
+  staging_slack_channel:
+    description: 'The name of channel to notify on for staging deployments'
+    required: true
+    default: ar-team-priv
+  prod_slack_mention:
+    description: 'The mention to include in the message for production deployments'
+    required: true
+    default: <!here>
+  staging_slack_mention:
+    description: 'The mention to include in the message for staging deployments'
     required: true
     default: <!here>
 
@@ -34,9 +42,9 @@ runs:
       with:
         payload: |
           {
-            "channel": "${{ inputs.slack_channel }}",
+            "channel": "${{ inputs.staging_slack_channel }}",
             "username": "Github Actions Deployment Monitor",
-            "text": "${{ inputs.slack_mention }} A deploy to ${{ inputs.app_name }} in staging has failed.",
+            "text": "${{ inputs.staging_slack_mention }} A deploy to ${{ inputs.app_name }} in staging has failed.",
             "icon_emoji": ":github:"
           }
       env:
@@ -48,9 +56,9 @@ runs:
       with:
         payload: |
           {
-            "channel": "${{ inputs.slack_channel }}",
+            "channel": "${{ inputs.prod_slack_channel }}",
             "username": "Github Actions Deployment Monitor",
-            "text": "${{ inputs.slack_mention }} A deploy to ${{ inputs.app_name }} in prod has failed.",
+            "text": "${{ inputs.prod_slack_mention }} A deploy to ${{ inputs.app_name }} in prod has failed.",
             "icon_emoji": ":github:"
           }
       env:
