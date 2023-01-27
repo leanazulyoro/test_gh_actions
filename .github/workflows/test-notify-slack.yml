@@ -14,12 +14,6 @@ jobs:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
 
-      - name: Setup Environment (Push)
-        if: ${{ github.event_name == 'push' }}
-        shell: bash
-        run: |
-          echo "LAST_COMMIT_SHA=${GITHUB_SHA}" >> ${GITHUB_ENV}
-      
       
       - name: Send custom JSON data to Slack workflow
         id: slack
