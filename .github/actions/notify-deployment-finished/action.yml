@@ -29,9 +29,9 @@ runs:
       with:
         payload: |
           {
-            "channel": "@leandro",
+            "channel": "ar-team-priv",
             "username": "Github Actions Deployment Monitor",
-            "text": "<@leandro> A deploy to ${{ inputs.app_name }} in prod has just finished.",
+            "text": "<!here> A deploy to ${{ inputs.app_name }} in prod has just finished.",
             "icon_emoji": ":github:"
           }
       env:
@@ -44,9 +44,9 @@ runs:
       with:
         payload: |
           {
-            "channel": "@leandro",
+            "channel": "ar-team-priv",
             "username": "Github Actions Deployment Monitor",
-            "text": "<@leandro> A deploy to ${{ inputs.app_name }} in staging has just finished.",
+            "text": "<!here> A deploy to ${{ inputs.app_name }} in staging has just finished.",
             "icon_emoji": ":github:"
           }
       env:
