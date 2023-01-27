@@ -14,6 +14,8 @@ jobs:
         run: |
           COMMIT_MESSAGE=${{ toJson(github.event.head_commit.message) }}
           echo "::set-output name=commit-message::${COMMIT_MESSAGE}"
+        shell: bash
+
       - name: Notify staging deploy started
         id: slack_staging_start
         uses: slackapi/slack-github-action@v1.23.0
