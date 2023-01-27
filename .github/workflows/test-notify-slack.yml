@@ -8,6 +8,13 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
+        
+      - name: Prepare
+        id: slack-prepare
+        run: |
+          COMMIT_MESSAGE="${{ github.event.head_commit.message }}"
+          COMMIT_MESSAGE_TRIMMED=${COMMIT_MESSAGE//$'\n'/'%0A'}
+          echo "::set-output name=commit-message::${COMMIT_MESSAGE}"
       - name: Notify staging deploy started  
         id: slack_staging_start
         uses: slackapi/slack-github-action@v1.23.0
@@ -17,7 +24,7 @@ jobs:
             {
               "channel": "@leandro",
               "username": "Github Actions Deployment Monitor",
-              "text": '<@leandro> A deploy to Metronome app in staging is starting - ${{ toJSON(github.event.head_commit.message) }}',
+              "text": "<@leandro> A deploy to Metronome app in staging is starting - ${{ steps.slack-prepare.outputs.commit-message }}",
               "icon_emoji": ":github:"
             }
         env:
