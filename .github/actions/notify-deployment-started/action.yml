@@ -3,8 +3,21 @@ description: Notifies to slack via a message on a given channel
 
 inputs:
   slack_webhook:
-    description: 'The slack incomming webhook url'
+    description: 'The slack incoming webhook url'
     required: true
+
+  prod_branch:
+    description: 'The branch for production deployments'
+    default: main
+
+  staging_branch:
+    description: 'The branch for staging deployments'
+    default: develop
+
+  app_name:
+    description: 'The name of the app being deployed'
+    required: true
+    default: Metronome app
 
 runs:
   using: composite
@@ -31,7 +44,7 @@ runs:
           {
             "channel": "@leandro",
             "username": "Github Actions Deployment Monitor",
-            "text": "<@leandro> A deploy to Metronome app in staging is starting - ${{ steps.slack-prepare.outputs.commit-message }}",
+            "text": "<@leandro> A deploy to ${{ inputs.app_name }} in staging is starting - ${{ steps.slack-prepare.outputs.commit-message }}",
             "icon_emoji": ":github:"
           }
       env:
@@ -46,7 +59,7 @@ runs:
           {
             "channel": "@leandro",
             "username": "Github Actions Deployment Monitor",
-            "text": "<@leandro> A deploy to Metronome app in prod is starting - ${{ toJSON(github.event.head_commit.message) }}",
+            "text": "<@leandro> A deploy to ${{ inputs.app_name }} in prod is starting - ${{ toJSON(github.event.head_commit.message) }}",
             "icon_emoji": ":github:"
           }
       env:

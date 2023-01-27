@@ -13,8 +13,10 @@ jobs:
         uses: ./.github/actions/notify-deployment-started
         with:
           slack_webhook: ${{ secrets.SLACK_WEBHOOK }}
+          app_name: Metronome app
 
       - name: Notify deployment finished
         uses: ./.github/actions/notify-deployment-finished
         with:
           slack_webhook: ${{ secrets.SLACK_WEBHOOK }}
+          app_name: Metronome app
