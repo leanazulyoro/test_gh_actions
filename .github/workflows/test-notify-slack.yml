@@ -8,7 +8,7 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
-      - name: Notify staging deploy started  
+      - name: Notify staging deploy started
         id: slack_staging_start
         uses: slackapi/slack-github-action@v1.23.0
         if: ${{ github.ref_name == 'develop' }}
