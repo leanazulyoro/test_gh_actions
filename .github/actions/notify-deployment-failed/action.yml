@@ -30,7 +30,7 @@ runs:
     - name: Notify staging deploy failed
       id: slack_staging_failed
       uses: slackapi/slack-github-action@v1.23.0
-      if: github.ref_name == inputs.staging_branch && failure()
+      if: github.ref_name == inputs.staging_branch
       with:
         payload: |
           {
@@ -44,7 +44,7 @@ runs:
     - name: Notify prod deploy failed
       id: slack_prod_failed
       uses: slackapi/slack-github-action@v1.23.0
-      if: github.ref_name == inputs.prod_branch && failure()
+      if: github.ref_name == inputs.prod_branch
       with:
         payload: |
           {

@@ -24,6 +24,7 @@ jobs:
           slack_mention: <@leandro>
 
       - name: Notify deployment failed
+        if: failure()
         uses: ./.github/actions/notify-deployment-failed
         with:
           slack_webhook: ${{ secrets.SLACK_WEBHOOK }}
