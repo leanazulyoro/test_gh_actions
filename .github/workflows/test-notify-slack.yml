@@ -20,14 +20,5 @@ jobs:
         with:
           slack_webhook: ${{ secrets.SLACK_WEBHOOK }}
           app_name: Metronome app
-          slack_channel: "asdasdasdas"
-          slack_mention: <@leandro>
-
-      - name: Notify deployment failed
-        if: ${{ failure() }}
-        uses: ./.github/actions/notify-deployment-failed
-        with:
-          slack_webhook: ${{ secrets.SLACK_WEBHOOK }}
-          app_name: Metronome app
-          slack_channel: "@leandro"
+          slack_channel: "sdsdsds"
           slack_mention: <@leandro>

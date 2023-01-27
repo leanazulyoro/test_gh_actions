@@ -55,3 +55,32 @@ runs:
           }
       env:
         SLACK_WEBHOOK_URL: ${{ inputs.slack_webhook }}
+
+    - name: Notify staging deploy failed
+      id: slack_staging_failed
+      uses: slackapi/slack-github-action@v1.23.0
+      if: github.ref_name == inputs.staging_branch && failure()
+      with:
+        payload: |
+          {
+            "channel": "${{ inputs.slack_channel }}",
+            "username": "Github Actions Deployment Monitor",
+            "text": "${{ inputs.slack_mention }} A deploy to ${{ inputs.app_name }} in staging has failed.",
+            "icon_emoji": ":github:"
+          }
+      env:
+        SLACK_WEBHOOK_URL: ${{ inputs.slack_webhook }}
+    - name: Notify prod deploy failed
+      id: slack_prod_failed
+      uses: slackapi/slack-github-action@v1.23.0
+      if: github.ref_name == inputs.prod_branch && failure()
+      with:
+        payload: |
+          {
+            "channel": "${{ inputs.slack_channel }}",
+            "username": "Github Actions Deployment Monitor",
+            "text": "${{ inputs.slack_mention }} A deploy to ${{ inputs.app_name }} in prod has failed.",
+            "icon_emoji": ":github:"
+          }
+      env:
+        SLACK_WEBHOOK_URL: ${{ inputs.slack_webhook }}
