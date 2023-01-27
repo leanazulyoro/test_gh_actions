@@ -20,11 +20,14 @@ jobs:
         with:
           slack_webhook: ${{ secrets.SLACK_WEBHOOK }}
           app_name: Metronome app
-          slack_channel: "@leandro"
+          slack_channel: "asdasdasdas"
           slack_mention: <@leandro>
 
-      - name: Show GitHub action_status
-        env:
-          GITHUB_ACTION_STATUS: ${{ github.action_status }}
-        run: echo "$GITHUB_ACTION_STATUS"
-        shell: bash
+      - name: Notify deployment failed
+        if: ${{ failure() }}
+        uses: ./.github/actions/notify-deployment-failed
+        with:
+          slack_webhook: ${{ secrets.SLACK_WEBHOOK }}
+          app_name: Metronome app
+          slack_channel: "@leandro"
+          slack_mention: <@leandro>
