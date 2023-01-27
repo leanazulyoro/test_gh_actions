@@ -24,5 +24,7 @@ jobs:
           slack_mention: <@leandro>
 
       - name: Show GitHub action_status
-        run: echo "${{ github.action_status }}"
+        env:
+          GITHUB_ACTION_STATUS: ${{ github.action_status }}
+        run: echo "GITHUB_ACTION_STATUS"
         shell: bash
