@@ -20,7 +20,7 @@ jobs:
             {
               "channel": "@leandro",
               "username": "Github Actions Deployment Monitor",
-              "text": "<@leandro> A deploy to Metronome app in staging is starting - ${{ github.event.head_commit.message }}\nPR title here. · ${{ GITHUB_SHA }} · ${{ GITHUB_REF }}",
+              "text": "<@leandro> A deploy to Metronome app in staging is starting - ${{ github.event.head_commit.message }}\n · ${{ env.GITHUB_SHA }} · ${{ env.GITHUB_REF }}",
               "icon_emoji": ":github:"
             }
         env:
