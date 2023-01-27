@@ -1,6 +1,11 @@
 name: Slack notify
 description: Notifies to slack via a message on a given channel
 
+inputs:
+  slack_webhook: 
+    description: 'The slack incomming webhook url'
+    required: true
+
 runs:
   using: composite
   steps:
@@ -17,7 +22,7 @@ runs:
             "icon_emoji": ":github:"
           }
       env:
-        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+        SLACK_WEBHOOK_URL: ${{ inputs.slack_webhook }}
     
     - name: Notify staging deploy finished
       id: slack_staging_finished
@@ -32,4 +37,4 @@ runs:
             "icon_emoji": ":github:"
           }
       env:
-        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+        SLACK_WEBHOOK_URL: ${{ inputs.slack_webhook }}
