@@ -12,7 +12,7 @@ jobs:
       - name: Prepare
         id: slack-prepare
         run: |
-          COMMIT_MESSAGE=${{ toJson(github.event.head_commit.message) }}"
+          COMMIT_MESSAGE=${{ toJson(github.event.head_commit.message) }}
           echo "::set-output name=commit-message::${COMMIT_MESSAGE}"
       - name: Notify staging deploy started  
         id: slack_staging_start
