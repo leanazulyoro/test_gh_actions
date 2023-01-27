@@ -26,7 +26,7 @@ jobs:
           app_name: Metronome app
           staging_branch: develop
           prod_branch: main
-          staging_slack_channel: "@leandro"
+          staging_slack_channel: "klasdajsdkas"
           prod_slack_channel: "@leandro"
           staging_slack_mention: <@leandro>
           prod_slack_mention: <@leandro>
