@@ -20,5 +20,5 @@ jobs:
         with:
           slack_webhook: ${{ secrets.SLACK_WEBHOOK }}
           app_name: Metronome app
-          slack_channel: "sdsdsds"
+          slack_channel: "@leandro"
           slack_mention: <@leandro>

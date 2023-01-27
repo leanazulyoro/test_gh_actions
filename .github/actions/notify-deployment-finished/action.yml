@@ -48,7 +48,7 @@ runs:
       with:
         payload: |
           {
-            "channel": "${{ inputs.slack_channel }}",
+            "channel": "caca",
             "username": "Github Actions Deployment Monitor",
             "text": "${{ inputs.slack_mention }} A deploy to ${{ inputs.app_name }} in staging has just finished.",
             "icon_emoji": ":github:"
