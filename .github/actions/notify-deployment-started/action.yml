@@ -31,6 +31,7 @@ runs:
         GITHUB_CONTEXT: ${{ toJson(github) }}
       run: echo "$GITHUB_CONTEXT"
       shell: bash
+    # This step is necessary otherwise using github.event.head_commit.message directly would break the yml when the commit message had linebreaks
     - name: Prepare commit message
       id: slack-prepare
       run: |
