@@ -15,7 +15,7 @@ jobs:
         run: echo "$GITHUB_CONTEXT"
 
       - name: Send custom JSON data to Slack workflow
-        id: slack
+        id: slack_staging_start
         uses: slackapi/slack-github-action@v1.23.0
         if: ${{ github.ref_name == 'develop' }}
         with:
@@ -29,7 +29,7 @@ jobs:
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
       - name: Send custom JSON data to Slack workflow
-        id: slack
+        id: slack_staging_finished
         uses: slackapi/slack-github-action@v1.23.0
         if: ${{ github.ref_name == 'develop' }}
         with:
@@ -45,7 +45,7 @@ jobs:
 
 
       - name: Send custom JSON data to Slack workflow
-        id: slack
+        id: slack_prod_start
         uses: slackapi/slack-github-action@v1.23.0
         if: ${{ github.ref_name == 'main' }}
         with:
@@ -55,7 +55,7 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
           
       - name: Send custom JSON data to Slack workflow
-        id: slack
+        id: slack_prod_finished
         uses: slackapi/slack-github-action@v1.23.0
         if: ${{ github.ref_name == 'main' }}
         with:
