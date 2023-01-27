@@ -4,17 +4,7 @@ jobs:
   slackNotification:
     runs-on: ubuntu-latest
     steps:
-        
-      # @here A deploy to Bloq Services in staging is starting - [Merge pull request #1144 from bloqpriv/flag_update](Merge commit message)
-      # [Flag updated for node connection example](PR title).
-
-
-      - name: Show GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
-
-      - name: Send custom JSON data to Slack workflow
+      - name: Notify staging deploy started
         id: slack_staging_start
         uses: slackapi/slack-github-action@v1.23.0
         if: ${{ github.ref_name == 'develop' }}
@@ -28,7 +18,8 @@ jobs:
             }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
-      - name: Send custom JSON data to Slack workflow
+
+      - name: Notify staging deploy finished
         id: slack_staging_finished
         uses: slackapi/slack-github-action@v1.23.0
         if: ${{ github.ref_name == 'develop' }}
@@ -43,8 +34,7 @@ jobs:
         env:
          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
 
-
-      - name: Send custom JSON data to Slack workflow
+      - name: Notify prod deploy started
         id: slack_prod_start
         uses: slackapi/slack-github-action@v1.23.0
         if: ${{ github.ref_name == 'main' }}
@@ -58,8 +48,8 @@ jobs:
             }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
-          
-      - name: Send custom JSON data to Slack workflow
+
+      - name: Notify prod deploy finished
         id: slack_prod_finished
         uses: slackapi/slack-github-action@v1.23.0
         if: ${{ github.ref_name == 'main' }}
