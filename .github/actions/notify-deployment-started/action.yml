@@ -1,0 +1,35 @@
+name: Slack notify
+description: Notifies to slack via a message on a given channel
+
+runs:
+  using: composite
+  steps:
+    - name: Notify prod deploy finished
+      id: slack_prod_finished
+      uses: slackapi/slack-github-action@v1.23.0
+      if: ${{ github.ref_name == 'main' }}
+      with:
+        payload: |
+          {
+            "channel": "@leandro",
+            "username": "Github Actions Deployment Monitor",
+            "text": "<@leandro> A deploy to Metronome app in prod has just finished.",
+            "icon_emoji": ":github:"
+          }
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+    
+    - name: Notify staging deploy finished
+      id: slack_staging_finished
+      uses: slackapi/slack-github-action@v1.23.0
+      if: ${{ github.ref_name == 'develop' }}
+      with:
+        payload: |
+          {
+            "channel": "@leandro",
+            "username": "Github Actions Deployment Monitor",
+            "text": "<@leandro> A deploy to Metronome app in staging has just finished.",
+            "icon_emoji": ":github:"
+          }
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}

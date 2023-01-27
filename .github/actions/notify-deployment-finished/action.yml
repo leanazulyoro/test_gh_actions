@@ -1,0 +1,41 @@
+name: Slack notify
+description: Notifies to slack via a message on a given channel
+
+runs:
+  using: composite
+  steps:
+    - name: Prepare commit message
+      run: |
+        COMMIT_MESSAGE=${{ toJson(github.event.head_commit.message) }}
+        echo "::set-output name=commit-message::${COMMIT_MESSAGE}"
+      shell: bash
+      
+    - name: Notify staging deploy started
+      id: slack_staging_start
+      uses: slackapi/slack-github-action@v1.23.0
+      if: ${{ github.ref_name == 'develop' }}
+      with:
+        payload: |
+          {
+            "channel": "@leandro",
+            "username": "Github Actions Deployment Monitor",
+            "text": "<@leandro> A deploy to Metronome app in staging is starting - ${{ steps.slack-prepare.outputs.commit-message }}",
+            "icon_emoji": ":github:"
+          }
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+        
+    - name: Notify prod deploy started
+      id: slack_prod_start
+      uses: slackapi/slack-github-action@v1.23.0
+      if: ${{ github.ref_name == 'main' }}
+      with:
+        payload: |
+          {
+            "channel": "@leandro",
+            "username": "Github Actions Deployment Monitor",
+            "text": "<@leandro> A deploy to Metronome app in prod is starting - ${{ toJSON(github.event.head_commit.message) }}",
+            "icon_emoji": ":github:"
+          }
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}

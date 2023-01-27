@@ -4,74 +4,8 @@ jobs:
   slackNotification:
     runs-on: ubuntu-latest
     steps:
-      - name: Show GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
-        
-      - name: Prepare
-        id: slack-prepare
-        run: |
-          COMMIT_MESSAGE=${{ toJson(github.event.head_commit.message) }}
-          echo "::set-output name=commit-message::${COMMIT_MESSAGE}"
-        shell: bash
+      - name: Notify deployment started
+        uses: ./.github/actions/notify-deployment-started
 
-      - name: Notify staging deploy started
-        id: slack_staging_start
-        uses: slackapi/slack-github-action@v1.23.0
-        if: ${{ github.ref_name == 'develop' }}
-        with:
-          payload: |
-            {
-              "channel": "@leandro",
-              "username": "Github Actions Deployment Monitor",
-              "text": "<@leandro> A deploy to Metronome app in staging is starting - ${{ steps.slack-prepare.outputs.commit-message }}",
-              "icon_emoji": ":github:"
-            }
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
-
-      - name: Notify staging deploy finished
-        id: slack_staging_finished
-        uses: slackapi/slack-github-action@v1.23.0
-        if: ${{ github.ref_name == 'develop' }}
-        with:
-          payload: |
-            {
-              "channel": "@leandro",
-              "username": "Github Actions Deployment Monitor",
-              "text": "<@leandro> A deploy to Metronome app in staging has just finished.",
-              "icon_emoji": ":github:"
-            }
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
-
-      - name: Notify prod deploy started
-        id: slack_prod_start
-        uses: slackapi/slack-github-action@v1.23.0
-        if: ${{ github.ref_name == 'main' }}
-        with:
-          payload: |
-            {
-              "channel": "@leandro",
-              "username": "Github Actions Deployment Monitor",
-              "text": "<@leandro> A deploy to Metronome app in prod is starting - ${{ toJSON(github.event.head_commit.message) }}",
-              "icon_emoji": ":github:"
-            }
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
-
-      - name: Notify prod deploy finished
-        id: slack_prod_finished
-        uses: slackapi/slack-github-action@v1.23.0
-        if: ${{ github.ref_name == 'main' }}
-        with:
-          payload: |
-            {
-              "channel": "@leandro",
-              "username": "Github Actions Deployment Monitor",
-              "text": "<@leandro> A deploy to Metronome app in prod has just finished.",
-              "icon_emoji": ":github:"
-            }
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+      - name: Notify deployment finished
+        uses: ./.github/actions/notify-deployment-finished
