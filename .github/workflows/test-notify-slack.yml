@@ -22,3 +22,7 @@ jobs:
           app_name: Metronome app
           slack_channel: "@leandro"
           slack_mention: <@leandro>
+
+      - name: Show GitHub action_status
+        run: echo "${{ github.action_status }}"
+        shell: bash
