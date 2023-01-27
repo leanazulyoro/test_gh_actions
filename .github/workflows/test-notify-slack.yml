@@ -18,13 +18,14 @@ jobs:
       - name: Send custom JSON data to Slack workflow
         id: slack
         uses: slackapi/slack-github-action@v1.23.0
+        if: ${{ github.ref_name == "develop" }}
         with:
           # This data can be any valid JSON from a previous step in the GitHub Action
           payload: |
             {
               "channel": "@leandro",
               "username": "Github Actions Deployment Monitor",
-              "text": "<@leandro> A deploy to Metronome app in staging is starting - ${{ github.event.head_commit.message }}\n · ${{ github.ref_name }}",
+              "text": "<@leandro> A deploy to Metronome app in staging is starting - ${{ github.event.head_commit.message }}\n",
               "icon_emoji": ":github:"
             }
         env:
