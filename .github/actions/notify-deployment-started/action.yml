@@ -16,6 +16,7 @@ runs:
       shell: bash
 
     - name: Prepare commit message
+      id: slack-prepare
       run: |
         COMMIT_MESSAGE=${{ toJson(github.event.head_commit.message) }}
         echo "::set-output name=commit-message::${COMMIT_MESSAGE}"
