@@ -58,7 +58,7 @@ runs:
     - name: Notify prod deploy started
       id: slack_prod_start
       uses: slackapi/slack-github-action@v1.23.0
-      if: ${{ github.ref_name == inputs.prod_branch }}
+      if: ${{ github.ref_name == inputs.prod_branch' }}
       with:
         payload: |
           {
