@@ -9,7 +9,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Notify deployment started
-        uses: ./.github/actions/notify-deployment/started
+        uses: ./.github/actions/notify-deployment/started.yml
         with:
           slack_webhook: ${{ secrets.SLACK_WEBHOOK }}
           app_name: Metronome app
@@ -20,7 +20,7 @@ jobs:
           staging_slack_mention: <@U02NAUG2VUG>
           prod_slack_mention: <@U02NAUG2VUG>
       - name: Notify deployment finished
-        uses: ./.github/actions/notify-deployment/finished
+        uses: ./.github/actions/notify-deployment/finished.yml
         with:
           slack_webhook: ${{ secrets.SLACK_WEBHOOK }}
           app_name: Metronome app
@@ -33,7 +33,7 @@ jobs:
 
       - name: Notify deployment failed
         if: failure()
-        uses: ./.github/actions/notify-deployment/failed
+        uses: ./.github/actions/notify-deployment/failed.yml
         with:
           slack_webhook: ${{ secrets.SLACK_WEBHOOK }}
           app_name: Metronome app
