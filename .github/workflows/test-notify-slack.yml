@@ -1,12 +1,12 @@
 on: push
-name: Slack Notification Demo
+name: Foo bar
 jobs:
-  slackNotification:
+  fooBar:
     runs-on: ubuntu-latest
     steps:
-      - name: Test if environment secrets work
+      - name: Test if environment variables work
         id: test-foo
         run: |
-          echo "${{ secrets.TEST_SECRET }}"
+          echo "${{ env.TEST_ENV }}"
         shell: bash
       
