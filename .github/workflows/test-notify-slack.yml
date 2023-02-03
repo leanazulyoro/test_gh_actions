@@ -11,6 +11,6 @@ jobs:
       - name: Test if environment variables work
         id: test-foo
         run: |
-          echo "${{ $testEnv }}"
+          echo "variable from shell environment : $testEnv"
         shell: bash
       
