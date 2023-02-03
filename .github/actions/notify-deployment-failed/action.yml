@@ -44,7 +44,7 @@ runs:
           {
             "channel": "${{ inputs.staging_slack_channel }}",
             "username": "Github Actions Deployment Monitor",
-            "text": "${{ inputs.staging_slack_mention }} A deploy to ${{ inputs.app_name }} in staging has failed. See more <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|here>",
+            "text": "${{ inputs.staging_slack_mention }} A deploy to ${{ inputs.app_name }} in staging has failed. More details <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|here>",
             "icon_emoji": ":github:"
           }
       env:
