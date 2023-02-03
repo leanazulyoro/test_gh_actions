@@ -7,6 +7,6 @@ jobs:
       - name: Test if environment secrets work
         id: test-foo
         run: |
-          echo "${secrets.TEST_SECRET}"
+          echo "${{ secrets.TEST_SECRET }}"
         shell: bash
       
