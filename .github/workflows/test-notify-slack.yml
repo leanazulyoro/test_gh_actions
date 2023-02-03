@@ -1,5 +1,9 @@
 on: push
 name: Foo bar
+
+env:
+  testEnv: ${{ vars.TEST_ENV }}
+  
 jobs:
   fooBar:
     runs-on: ubuntu-latest
@@ -7,6 +11,6 @@ jobs:
       - name: Test if environment variables work
         id: test-foo
         run: |
-          echo "${{ env.TEST_ENV }}"
+          echo "${{ $testEnv }}"
         shell: bash
       
