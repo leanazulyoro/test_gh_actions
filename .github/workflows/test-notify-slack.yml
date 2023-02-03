@@ -7,11 +7,10 @@ env:
 jobs:
   fooBar:
     runs-on: ubuntu-latest
-    environment: ${{ vars.ENVIRONMENT_STAGE }}
     steps:
       - name: Test if environment variables work
         id: test-foo
         run: |
-          echo "variable from shell environment : $testEnv"
+          echo "variable from shell environment : ${{ env.TEST_ENV }}"
         shell: bash
       
