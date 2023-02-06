@@ -1,0 +1,64 @@
+name: Notify deployment finished
+description: Notifies to slack via a message on a given channel
+
+inputs:
+  slack_webhook:
+    description: 'The slack incoming webhook url'
+    required: true
+  prod_branch:
+    description: 'The branch for production deployments'
+    default: prod
+  staging_branch:
+    description: 'The branch for staging deployments'
+    default: master
+  app_name:
+    description: 'The name of the app being deployed'
+    required: true
+    default: Metronome app
+  prod_slack_channel:
+    description: 'The name of channel to notify on for production deployments'
+    required: true
+    default: ar-team-priv
+  staging_slack_channel:
+    description: 'The name of channel to notify on for staging deployments'
+    required: true
+    default: ar-team-priv
+  prod_slack_mention:
+    description: 'The mention to include in the message for production deployments'
+    required: true
+    default: <!here>
+  staging_slack_mention:
+    description: 'The mention to include in the message for staging deployments'
+    required: true
+    default: <!here>
+runs:
+  using: composite
+  steps:
+    - name: Notify prod deploy finished
+      id: slack_prod_finished
+      uses: slackapi/slack-github-action@v1.23.0
+      if: ${{ github.ref_name == inputs.prod_branch }}
+      with:
+        payload: |
+          {
+            "channel": "${{ inputs.prod_slack_channel }}",
+            "username": "Github Actions Deployment Monitor",
+            "text": "${{ inputs.prod_slack_mention }} A deploy to ${{ inputs.app_name }} in prod has just finished.",
+            "icon_emoji": ":github:"
+          }
+      env:
+        SLACK_WEBHOOK_URL: ${{ inputs.slack_webhook }}
+    - name: Notify staging deploy finished
+      id: slack_staging_finished
+      uses: slackapi/slack-github-action@v1.23.0
+      if: ${{ github.ref_name == inputs.staging_branch }}
+      with:
+        payload: |
+          {
+            "channel": "${{ inputs.staging_slack_channel }}",
+            "username": "Github Actions Deployment Monitor",
+            "text": "${{ inputs.staging_slack_mention }} A deploy to ${{ inputs.app_name }} in staging has just finished.",
+            "icon_emoji": ":github:"
+          }
+      env:
+        SLACK_WEBHOOK_URL: ${{ inputs.slack_webhook }}
