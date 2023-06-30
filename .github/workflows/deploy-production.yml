@@ -1,0 +1,15 @@
+name: Deploy Production
+
+on:
+  push:
+    branches:
+      - main
+  
+jobs:
+  deploy:
+    uses: leanazulyoro/test_gh_actions/.github/workflows/reusable-deploy.yml@develop
+    with:
+      environment: production
+
+
+      
