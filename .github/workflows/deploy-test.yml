@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: "echo Deploy using var TEST_ENV: ${{ vars.TEST_ENV }}"
-      - run: "echo ${{ github }}"
+      - run: "echo ${{ toJSON(github) }}"
   
 
 
