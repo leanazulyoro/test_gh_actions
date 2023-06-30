@@ -6,7 +6,9 @@ on:
         required: true
         type: string
 
-concurrency: ci-${{ github.ref }}
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
 
 env:
   testEnv: ${{ vars.TEST_ENV }}
