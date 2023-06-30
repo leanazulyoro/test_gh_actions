@@ -7,7 +7,7 @@ on:
   
 jobs:
   deploy:
-    uses: ./.github/workflows/reusable-deploy
+    uses: ./.github/workflows/reusable-deploy.yml
     with:
       environment: staging
 
