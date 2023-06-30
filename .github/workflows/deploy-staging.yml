@@ -7,7 +7,7 @@ on:
   
 jobs:
   deploy:
-    uses: /workflows/reusable-deploy
+    uses: workflows/reusable-deploy
     with:
       environment: staging
 
