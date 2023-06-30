@@ -11,7 +11,8 @@ jobs:
       name: ${{ github.event.ref == 'refs/heads/develop' && 'staging' || 'production' }}
     runs-on: ubuntu-latest
     steps:
-      - run: "echo Deploy to staging using var TEST_ENV: ${{ vars.TEST_ENV }}"
+      - run: "echo Deploy using var TEST_ENV: ${{ vars.TEST_ENV }}"
+      - run: "${{ github }}"
   
 
 
