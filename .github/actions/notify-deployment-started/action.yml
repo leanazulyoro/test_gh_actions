@@ -34,15 +34,6 @@ inputs:
 runs:
   using: composite
   steps:
-    # This step is necessary otherwise using github.event.head_commit.message directly would break the yml if the commit message has linebreaks
-    - name: Prepare commit message
-      uses: mad9000/actions-find-and-replace-string@3
-      with:
-        source: ${{ github.event.head_commit.message }} 
-        find: '"' 
-        replace: '\\"'
-        replaceAll: 'true'
-      id: slack-prepare
     - name: Notify staging deploy started
       id: slack_staging_start
       uses: slackapi/slack-github-action@v1.23.0
