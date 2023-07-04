@@ -26,7 +26,7 @@ jobs:
         uses: ./.github/actions/notify-deployment-started
         with:
           slack_webhook: ${{ secrets.SLACK_WEBHOOK }}
-          app_name: Test GH Actions
+          app_name: Test app
           staging_slack_channel: D02MM7KJP0A
           staging_branch: 'develop'
           prod_branch: 'main'
