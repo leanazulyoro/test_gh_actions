@@ -64,7 +64,7 @@ runs:
           {
             "channel": "${{ inputs.prod_slack_channel }}",
             "username": "Github Actions Deployment Monitor",
-            "text": "${{ inputs.prod_slack_mention }} A deploy to ${{ inputs.app_name }} in prod is starting - ${{ format(github.event.head_commit.message, '"', '\"') }}",
+            "text": "${{ inputs.prod_slack_mention }} A deploy to ${{ inputs.app_name }} in prod is starting - ${{ format(github.event.head_commit.message, '"', "'") }}",
             "icon_emoji": ":github:"
           }
       env:
