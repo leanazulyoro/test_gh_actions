@@ -21,6 +21,7 @@ jobs:
     runs-on: ubuntu-latest 
     
     steps:
+      - uses: actions/checkout@v2
       - name: Notify deployment started
         uses: ./.github/actions/notify-deployment-started
         with:
