@@ -38,7 +38,7 @@ runs:
     - name: Prepare commit message
       uses: mad9000/actions-find-and-replace-string@3
       with:
-        source: ${{ github.event.head_commit.message) }} 
+        source: ${{ github.event.head_commit.message }} 
         find: '"' 
         replace: '\\"'
       id: slack-prepare
