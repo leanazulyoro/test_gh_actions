@@ -20,7 +20,7 @@ jobs:
       name: ${{ inputs.environment }}
     runs-on: ubuntu-latest 
     
-    steps:
+    steps: 
       - uses: actions/checkout@v2
       - name: Notify deployment started
         uses: ./.github/actions/notify-deployment-started
