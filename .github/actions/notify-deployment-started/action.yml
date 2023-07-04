@@ -43,7 +43,7 @@ runs:
           {
             "channel": "${{ inputs.staging_slack_channel }}",
             "username": "Github Actions Deployment Monitor",
-            "text": ${{ toJSON(format('{0}', github.event.head_commit.message)) }},
+            "text": ${{ toJSON(format('{0} A deploy to {1} in staging is starting - {2}', inputs.staging_slack_mention, inputs.app_name, github.event.head_commit.message)) }},
             "icon_emoji": ":github:"
           }
       env:
