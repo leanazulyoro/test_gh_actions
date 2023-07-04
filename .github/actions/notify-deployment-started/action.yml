@@ -36,11 +36,12 @@ runs:
   steps:
     # This step is necessary otherwise using github.event.head_commit.message directly would break the yml if the commit message has linebreaks
     - name: Prepare commit message
+      uses: mad9000/actions-find-and-replace-string@3
+      with:
+        source: ${{ github.event.head_commit.message) }} 
+        find: '"' 
+        replace: '\\"'
       id: slack-prepare
-      run: |
-        COMMIT_MESSAGE=${{ toJSON(github.event.head_commit.message) }}
-        echo "::set-output name=commit-message::${COMMIT_MESSAGE//\"/\\"}"
-      shell: bash
     - name: Notify staging deploy started
       id: slack_staging_start
       uses: slackapi/slack-github-action@v1.23.0
@@ -50,7 +51,7 @@ runs:
           {
             "channel": "${{ inputs.staging_slack_channel }}",
             "username": "Github Actions Deployment Monitor",
-            "text": "${{ inputs.staging_slack_mention }} A deploy to ${{ inputs.app_name }} in staging is starting - ${{ steps.slack-prepare.outputs.commit-message }}",
+            "text": "${{ inputs.staging_slack_mention }} A deploy to ${{ inputs.app_name }} in staging is starting - ${{ steps.slack-prepare.output }}",
             "icon_emoji": ":github:"
           }
       env:
