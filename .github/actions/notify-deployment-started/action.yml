@@ -52,7 +52,7 @@ runs:
           {
             "channel": "${{ inputs.staging_slack_channel }}",
             "username": "Github Actions Deployment Monitor",
-            "text": "foo \"bar\" lorem",
+            "text": "${{ format('{0}', 'hola')}}",
             "icon_emoji": ":github:"
           }
       env:
