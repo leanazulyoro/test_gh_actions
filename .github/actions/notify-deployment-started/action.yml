@@ -51,7 +51,7 @@ runs:
           {
             "channel": "${{ inputs.staging_slack_channel }}",
             "username": "Github Actions Deployment Monitor",
-            "text": "${{ inputs.staging_slack_mention }} A deploy to ${{ inputs.app_name }} in staging is starting - ${{ steps.slack-prepare.output }}",
+            "text": "${{ inputs.staging_slack_mention }} A deploy to ${{ inputs.app_name }} in staging is starting - ${{ steps.slack-prepare.outputs.value }}",
             "icon_emoji": ":github:"
           }
       env:
