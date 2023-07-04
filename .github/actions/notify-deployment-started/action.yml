@@ -39,7 +39,7 @@ runs:
       id: slack-prepare
       run: |
         COMMIT_MESSAGE=${{ toJSON(github.event.head_commit.message) }}
-        echo "::set-output name=commit-message::${COMMIT_MESSAGE//\"/'}"
+        echo "::set-output name=commit-message::${COMMIT_MESSAGE//\"/\'}"
       shell: bash
     - name: Notify staging deploy started
       id: slack_staging_start
