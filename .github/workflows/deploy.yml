@@ -21,6 +21,18 @@ jobs:
     runs-on: ubuntu-latest 
     
     steps:
+      - name: Notify deployment started
+        uses: ./.github/actions/notify-deployment-started
+        with:
+          slack_webhook: ${{ secrets.SLACK_WEBHOOK }}
+          app_name: Test GH Actions
+          staging_slack_channel: D02MM7KJP0A
+          staging_branch: 'develop'
+          prod_branch: 'main'
+          prod_slack_channel: D02MM7KJP0A
+          prod_slack_mention: <@D02MM7KJP0A>
+    
+    
       - name: Sleep for 30 seconds
         uses: jakejarvis/wait-action@master
         with: 
