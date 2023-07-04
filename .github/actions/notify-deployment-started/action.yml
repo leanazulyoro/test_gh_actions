@@ -38,7 +38,7 @@ runs:
     - name: Prepare commit message
       id: slack-prepare
       run: |
-        COMMIT_MESSAGE=${{ toJson(github.event.head_commit.message) }}
+        COMMIT_MESSAGE=${{ toJSON(github.event.head_commit.message) }}
         echo "::set-output name=commit-message::${COMMIT_MESSAGE}"
       shell: bash
     - name: Notify staging deploy started
@@ -50,7 +50,7 @@ runs:
           {
             "channel": "${{ inputs.staging_slack_channel }}",
             "username": "Github Actions Deployment Monitor",
-            "text": "${{ inputs.staging_slack_mention }} A deploy to ${{ inputs.app_name }} in staging is starting - ${{ toJSON(github.event.head_commit.message) }}",
+            "text": "${{ inputs.staging_slack_mention }} A deploy to ${{ inputs.app_name }} in staging is starting - ${{ steps.slack-prepare.outputs.commit-message }}",
             "icon_emoji": ":github:"
           }
       env:
