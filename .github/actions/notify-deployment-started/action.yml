@@ -38,7 +38,7 @@ runs:
     - name: Prepare commit message
       id: slack-prepare
       run: |
-        COMMIT_MESSAGE=${{ format(github.event.head_commit.message) }}
+        COMMIT_MESSAGE=${{ format('{0}', github.event.head_commit.message) }}
         echo "::set-output name=commit-message::${COMMIT_MESSAGE}"
       shell: bash
     - name: Notify staging deploy started
