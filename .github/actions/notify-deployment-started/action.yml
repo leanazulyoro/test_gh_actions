@@ -50,7 +50,7 @@ runs:
           {
             "channel": "${{ inputs.staging_slack_channel }}",
             "username": "Github Actions Deployment Monitor",
-            "text": "${{ inputs.staging_slack_mention }} A deploy to ${{ inputs.app_name }} in staging is starting - ${{ steps.slack-prepare.outputs.commit-message }}",
+            "text": "${{ inputs.staging_slack_mention }} A deploy to ${{ inputs.app_name }} in staging is starting - ${{ toJSON(github.event.head_commit.message) }}",
             "icon_emoji": ":github:"
           }
       env:
@@ -64,7 +64,7 @@ runs:
           {
             "channel": "${{ inputs.prod_slack_channel }}",
             "username": "Github Actions Deployment Monitor",
-            "text": "${{ toJSON(github.event.head_commit.message) }}",
+            "text": "${{ inputs.prod_slack_mention }} A deploy to ${{ inputs.app_name }} in prod is starting - ${{ toJSON(github.event.head_commit.message) }}",
             "icon_emoji": ":github:"
           }
       env:
