@@ -6,7 +6,8 @@ on:
         required: true
         type: string
     secrets:
-      - MY_REPO_SECRET
+      MY_REPO_SECRET:
+        required: false
         
 concurrency:
   group: ci-${{ github.ref }}
