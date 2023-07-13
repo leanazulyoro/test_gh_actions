@@ -5,7 +5,10 @@ on:
       environment:
         required: true
         type: string
-
+    secrets:
+      MY_REPO_SECRET:
+        required: true
+        
 concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
