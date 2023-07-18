@@ -36,7 +36,7 @@ jobs:
           prod_slack_channel: D02MM7KJP0A
           prod_slack_mention: <@D02MM7KJP0A>
           
-      - run: "echo Deploy to ${{ inputs.environment }} using var TEST_ENV: ${{ vars.TEST_ENV }}. {{ toJSON(github.event.head_commit) }}"
+      - run: "echo Deploy to ${{ inputs.environment }} using var TEST_ENV: ${{ vars.TEST_ENV }}. ${{ toJSON(github.event.head_commit) }}"
   
 
 
