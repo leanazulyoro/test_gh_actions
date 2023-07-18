@@ -37,8 +37,8 @@ jobs:
           prod_slack_mention: <@D02MM7KJP0A>
         
       - name: head_commit
-          env: { CONTENT: "${{ toJson(env) }}" }
-          run: "echo $CONTENT"
+        env: { CONTENT: "${{ toJson(env) }}" }
+        run: "echo $CONTENT"
 
 
       
