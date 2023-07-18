@@ -36,9 +36,9 @@ jobs:
           prod_slack_channel: D02MM7KJP0A
           prod_slack_mention: <@D02MM7KJP0A>
         
-      - name: "debug head_commit"
-        env: { CONTENT: "${{ toJson(github.event.head_commit) }}" }
-        run: "echo $CONTENT"
+      - name: head_commit
+          env: { CONTENT: "${{ toJson(env) }}" }
+          run: "echo $CONTENT"
 
 
       
