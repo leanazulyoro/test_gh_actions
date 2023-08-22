@@ -1,15 +1,18 @@
 name: Deploy Staging
 
 on:
+  pull_request:
   push:
     branches:
       - develop
   
 jobs:
   deploy:
-    uses: leanazulyoro/test_gh_actions/.github/workflows/reusable-deploy.yml@develop
+    uses: ./.github/workflows/deploy.yml
     with:
       environment: staging
+    secrets:
+      MY_REPO_SECRET: ${{ secrets.MY_REPO_SECRET }}
 
 
       

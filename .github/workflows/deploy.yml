@@ -1,0 +1,44 @@
+name: Deploy
+on:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+    secrets:
+      MY_REPO_SECRET:
+        required: false
+        
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env: 
+  testEnv: ${{ vars.TEST_ENV }}
+  
+jobs:
+  deploy:
+    name: Deploy
+    environment:
+      name: ${{ inputs.environment }}
+    runs-on: ubuntu-latest 
+    
+    steps: 
+      - uses: actions/checkout@v2
+      - name: Notify deployment started
+        uses: ./.github/actions/notify-deployment-started
+        with:
+          slack_webhook: ${{ secrets.SLACK_WEBHOOK }}
+          app_name: Test app
+          staging_slack_channel: D02MM7KJP0A
+          staging_branch: 'develop'
+          prod_branch: 'main'
+          prod_slack_channel: D02MM7KJP0A
+          prod_slack_mention: <@D02MM7KJP0A>
+        
+      - name: github.env
+        env: { CONTENT: "${{ toJson(github.env) }}" }
+        run: "echo $CONTENT"
+
+
+      

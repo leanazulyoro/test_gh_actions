@@ -34,13 +34,6 @@ inputs:
 runs:
   using: composite
   steps:
-    # This step is necessary otherwise using github.event.head_commit.message directly would break the yml if the commit message has linebreaks
-    - name: Prepare commit message
-      id: slack-prepare
-      run: |
-        COMMIT_MESSAGE=${{ toJson(github.event.head_commit.message) }}
-        echo "::set-output name=commit-message::${COMMIT_MESSAGE}"
-      shell: bash
     - name: Notify staging deploy started
       id: slack_staging_start
       uses: slackapi/slack-github-action@v1.23.0
@@ -50,8 +43,8 @@ runs:
           {
             "channel": "${{ inputs.staging_slack_channel }}",
             "username": "Github Actions Deployment Monitor",
-            "text": "${{ inputs.staging_slack_mention }} A deploy to ${{ inputs.app_name }} in staging is starting - ${{ steps.slack-prepare.outputs.commit-message }}",
-            "icon_emoji": ":github:"
+            "text": ${{ toJSON(format('{0} A deploy to {1} in staging is starting - {2}', inputs.staging_slack_mention, inputs.app_name, github.event.head_commit.message)) }},
+            "icon_emoji": ":github:" 
           }
       env:
         SLACK_WEBHOOK_URL: ${{ inputs.slack_webhook }}
